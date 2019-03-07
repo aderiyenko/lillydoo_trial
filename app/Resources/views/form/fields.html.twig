@@ -1,0 +1,17 @@
+{% block file_widget %}
+    {% spaceless %}
+
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Select File</span>
+                {{ block('form_widget') }}
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload a file">
+            </div>
+        </div>
+
+
+    {% endspaceless %}
+
+{% endblock %}
