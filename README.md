@@ -11,8 +11,7 @@ LILLYDOO Test Task
 
 - free 80 port
 - `docker`, `docker-compose`
-- `composer`
-- `yarn`
+- `composer`, `yarn`, both in the `PATH`
 - PHP >= 7 with imagick PECL extension (required for `LiipImagineBundle`)
 - `make` (optional)
 
