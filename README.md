@@ -5,6 +5,7 @@ LILLYDOO Test Task
 
 - paging on list action
 - delete confirmation
+- no fixtures 
 - possible issues with large images/imagick, but perpaps only recreatable on my desktop
 
 #### Prerequisites
