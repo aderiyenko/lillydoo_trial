@@ -43,6 +43,7 @@ build:
 	composer install
 	yarn install
 	php bin/console --no-interaction doctrine:migrations:migrate
+	chmod o+w ./db/lillydoo.db
 run:
 	yarn encore production
 	docker-compose up
