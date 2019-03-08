@@ -8,7 +8,7 @@ services:
       - ./:/var/www/lillydoo
       - ./docker/configs/nginx:/etc/nginx/conf.d
       - ./docker/logs:/var/log/nginx
-    command: /bin/bash -c "rm -rf /var/www/lillydoo/var/cache && mkdir /var/www/lillydoo/var/cache && chown -R www-data /var/www/lillydoo/var/cache  && chown -R www-data /var/www/lillydoo/var/logs && chown -R www-data /var/www/lillydoo/var/sessions && nginx -g 'daemon off;'"
+    command: /bin/bash -c "rm -rf /var/www/lillydoo/var/cache && mkdir /var/www/lillydoo/var/cache && chmod -R 777 /var/www/lillydoo/var/cache  && chmod -R 777 /var/www/lillydoo/var/logs && chmod -R 777 /var/www/lillydoo/var/sessions && nginx -g 'daemon off;'"
     networks:
       main:
         aliases:
