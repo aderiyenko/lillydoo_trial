@@ -25,8 +25,6 @@ class PersonType extends AbstractType
     {
         $countries = Intl::getRegionBundle()->getCountryNames();
 
-        $transformer = new DatetimeToStringTransformer();
-
         $builder
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
@@ -59,6 +57,6 @@ class PersonType extends AbstractType
             ])
         ;
 
-        $builder->get('dob')->addModelTransformer($transformer);
+        $builder->get('dob')->addModelTransformer(new DatetimeToStringTransformer());
     }
 }

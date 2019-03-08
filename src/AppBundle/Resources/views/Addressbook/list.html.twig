@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>People List</h1>
-    <table>
+    <table class="highlight responsive-table">
         <thead>
         <tr>
             <th>First Name</th>
@@ -30,15 +30,16 @@
             <td>{{ person.streetAddress }}</td>
             <td>{{ person.city }}</td>
             <td>{{ person.zip }}</td>
-            <td>{{ person.country }}</td>
+            <td>{{ countries[person.country] }}</td>
             <td>{{ person.phone }}</td>
             <td>{{ person.dob|date("Y-m-d") }}</td>
             <td>{{ person.email }}</td>
             <td>
                 {% if person.picture %}
-                    <img src="/uploads/{{ person.picture }}"/></td>
+                    <img src="{{ asset('/uploads/' ~ person.picture ) | imagine_filter('thumb_filter') }}"/></td>
                 {% endif %}
             <td>
+                <a href="{{ url('view',   { 'id': person.id }) }}"><i class="material-icons">pageview</i></a>
                 <a href="{{ url('create', { 'id': person.id }) }}"><i class="material-icons">edit</i></a>
                 <a href="{{ url('delete', { 'id': person.id }) }}"><i class="material-icons">delete</i></a>
             </td>

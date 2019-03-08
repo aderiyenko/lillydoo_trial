@@ -19,6 +19,16 @@
     </div>
 </nav>
 <div class="contentwrapper">
+    {% for flashMessage in app.session.flashbag.get('error') %}
+
+        <div class="card-panel red lighten-2">{{ flashMessage }}</div>
+
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('success') %}
+
+        <div class="card-panel teal lighten-2">{{ flashMessage }}</div>
+
+    {% endfor %}
     {% block content %}
 
     {% endblock %}
@@ -26,5 +36,6 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
+
 </body>
 </html>

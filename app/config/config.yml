@@ -70,3 +70,20 @@ sensio_framework_extra:
         annotations: false
 webpack_encore:
     output_path: '%kernel.project_dir%/web/build'
+liip_imagine:
+    filter_sets:
+        thumb_filter:
+            filters:
+                thumbnail:
+                    size: [128, 128]
+                    mode: outbound
+        large_thumb_filter:
+            filters:
+                thumbnail:
+                    size: [384, 384]
+                    mode: outbound
+    resolvers:
+        default:
+            web_path:
+                web_root: '%kernel.project_dir%/web/'
+                cache_prefix: 'uploads'

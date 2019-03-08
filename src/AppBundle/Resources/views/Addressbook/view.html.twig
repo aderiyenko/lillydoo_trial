@@ -2,6 +2,50 @@
 
 {% block title %}AppBundle:Addressbook:view{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Addressbook:view page</h1>
+{% block content %}
+<h1>View {{ person.firstName }} {{ person.lastName }}</h1>
+<table class="highlight responsive-table viewtable">
+    <tr>
+        <td>First Name:</td>
+        <td>{{ person.firstName }}</td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td>{{ person.lastName }}</td>
+    </tr>
+    <tr>
+        <td>Street Address:</td>
+        <td>{{ person.streetAddress }}</td>
+    </tr>
+    <tr>
+        <td>ZIP:</td>
+        <td>{{ person.zip }}</td>
+    </tr>
+    <tr>
+        <td>City:</td>
+        <td>{{ person.city }}</td>
+    </tr>
+    <tr>
+        <td>Country:</td>
+        <td>{{ person.country }}</td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>{{ person.phone }}</td>
+    </tr>
+    <tr>
+        <td>Birthday:</td>
+        <td>{{ person.dob|date('Y-m-d') }}</td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td>{{ person.email }}</td>
+    </tr>
+    {%  if person.picture %}
+        <tr>
+            <td>Picture:</td>
+            <td><img src="{{ asset('/uploads/' ~ person.picture ) | imagine_filter('large_thumb_filter') }}"/></td>
+        </tr>
+    {%  endif %}
+</table>
 {% endblock %}

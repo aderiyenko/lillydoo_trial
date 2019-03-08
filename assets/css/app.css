@@ -2,6 +2,6 @@
     margin: 40px;
 }
 
-form {
+form, table.viewtable {
     width: 500px;
 }

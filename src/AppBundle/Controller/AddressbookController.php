@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Person;
 use AppBundle\Form\PersonType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Intl\Intl;
 
 class AddressbookController extends Controller
 {
@@ -19,7 +20,8 @@ class AddressbookController extends Controller
         $people = $em->getRepository('AppBundle:Person')->findAll();
 
         return $this->render('AppBundle:Addressbook:list.html.twig', array(
-            'people' => $people
+            'people' => $people,
+            'countries' => Intl::getRegionBundle()->getCountryNames()
         ));
     }
 
@@ -65,6 +67,8 @@ class AddressbookController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Person has been saved');
+
+            return $this->redirectToRoute('list');
         }
 
         return $this->render('AppBundle:Addressbook:create.html.twig', array(
@@ -75,21 +79,39 @@ class AddressbookController extends Controller
     /**
      * @Route("/view/{id}", name="view")
      */
-    public function viewAction()
+    public function viewAction(Request $request)
     {
+        if(($id = $request->get('id'))) {
+            $em = $this->getDoctrine()->getManager();
+            $person = $em->getRepository('AppBundle:Person')->findOneBy([
+                'id' => $id
+            ]);
+        } else {
+            return $this->redirectToRoute('list');
+        }
+
         return $this->render('AppBundle:Addressbook:view.html.twig', array(
-            // ...
+            'person' => $person
         ));
     }
 
     /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function deleteAction()
+    public function deleteAction(Request $request)
     {
-        return $this->render('AppBundle:Addressbook:delete.html.twig', array(
-            // ...
-        ));
+        if(($id = $request->get('id'))) {
+            $em = $this->getDoctrine()->getManager();
+            $person = $em->getRepository('AppBundle:Person')->findOneBy([
+                'id' => $id
+            ]);
+
+            $em->remove($person);
+            $em->flush();
+        }
+        $this->addFlash('success', 'Person has been successfully deleted.');
+
+        return $this->redirectToRoute('list');
     }
 
 }
