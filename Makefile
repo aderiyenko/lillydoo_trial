@@ -44,4 +44,5 @@ build:
 	yarn install
 	php bin/console --no-interaction doctrine:migrations:migrate
 run:
+	yarn encore production
 	docker-compose up
