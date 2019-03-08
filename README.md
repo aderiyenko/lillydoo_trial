@@ -22,3 +22,4 @@ LILLYDOO Test Task
 
 - add `lillydo.int` to your hosts file (optional, you can just use :80)
 - `make build && make run`
+- `make stop` to stop containers
