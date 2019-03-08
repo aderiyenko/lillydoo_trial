@@ -46,3 +46,5 @@ build:
 run:
 	yarn encore production
 	docker-compose up
+stop:
+	docker-compose down
