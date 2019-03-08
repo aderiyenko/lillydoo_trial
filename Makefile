@@ -4,7 +4,6 @@ build:
 	rm -rf ./var && mkdir var && chmod -R o+w var/
 	composer install
 	yarn install
-	php bin/console doctrine:schema:update --force
 	php bin/console --no-interaction doctrine:migrations:migrate
 run:
 	docker-compose up
